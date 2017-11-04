@@ -8,6 +8,7 @@
  *
  * @author Baloch
  */
+import java.util.ArrayList;
 import javax.swing.*;
 import java.sql.*;
 public class Income extends javax.swing.JFrame {
@@ -153,8 +154,8 @@ public class Income extends javax.swing.JFrame {
         Databasecon obj=new Databasecon();
         Databasecon obj1=new Databasecon();
         int k=0;
-        int arry[]=new int[k];
-        
+        int arry[]=new int[100];
+       int h=0;        
 obj.connect();
 ResultSet rt=null;
       Statement st,st1=null;
@@ -162,10 +163,9 @@ ResultSet rt=null;
       obj.connect();
       obj1.connect();
       int id;
-      int first;
-     try{
-          String s1,s2,s3,s4,s5;
-             
+      int first,   result = 0,sum = 0,total = 0;
+      String s1,s2,s3,s4,s5,s6,s7;
+             int Remaingrupees;
              int Bills,LowerStafsalary;
                     int TeachersPay,Gernaterrepairment,Furniturerepairment;
             s1=jTextField3.getText();
@@ -178,6 +178,9 @@ ResultSet rt=null;
             Bills=Integer.parseInt(s4);
             s5=jTextField6.getText();
             LowerStafsalary=Integer.parseInt(s5);
+     
+     try{
+                
             String query2  = "Insert into Income2 values('"+Bills+"','"+TeachersPay+"','"+Gernaterrepairment+"','"+Furniturerepairment+"','"+LowerStafsalary+"')";              
             st= obj.con.createStatement();
             //st1= obj1.con.createStatement();
@@ -197,12 +200,32 @@ try{
 
              
              while(rt.next()){// first I was confuse how to print data from database but with  alote struggle i did it 
-  
+ 
              
                  arry[k]=Integer.parseInt(rt.getString("AmountPaid"));
-                               System.out.println("Ilike");          
-                 k++;
-             }
+                                          
+                  
+               
+               sum=total;      
+                 result= arry[k]+arry[k+1];
+                 
+                 total=sum+result;                  
+                          
+                  k++;  
+               
+                            
+            
+               
+                }  
+                 
+            int incometotal=Bills+LowerStafsalary+TeachersPay+Gernaterrepairment+Furniturerepairment;
+              String S10 = Integer.toString(incometotal);
+            
+            Remaingrupees = total-incometotal; 
+            String s11 = Integer.toString(Remaingrupees);
+                                
+             JOptionPain.showMessageDialog(null,s11); 
+               
             }catch(Exception ex){
                 ex.getStackTrace();
             }

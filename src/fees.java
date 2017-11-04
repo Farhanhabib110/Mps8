@@ -8,6 +8,7 @@
  *
  * @author Baloch
  */
+
 import java.sql.*;
 public class fees extends javax.swing.JFrame {
 
@@ -130,19 +131,30 @@ ResultSet rt=null;
             AmountPaid=Integer.parseInt(s2);
             s3=jTextField1.getText();
             Date=Integer.parseInt(s3);
-             try{String query2  = "Insert into fees values('"+StudentName+"' , '"+Class+"' , '"+AmountPaid+"' , '"+Date+"' )";              
+             try{ String query2  = "Insert into fees values('"+StudentName+"' , '"+Class+"' , '"+AmountPaid+"' , '"+Date+"' )";              
             st= obj.con.createStatement();
-             int j =st.executeUpdate(query2);}
-     catch(Exception ex){
- ex.getStackTrace();
-     try{
-                 String query3="Insert into Income values('"+AmountPaid+"')";
-                 st7= obj.con.createStatement();
-                 int m =st7.executeUpdate(query3);  
-      System.out.println("well");} 
-     catch(Exception e){
- e.getStackTrace();}}
+             int j =st.executeUpdate(query2);
+             
+ 
+           
      
+ 
+                 
+         String query3="Insert into Income values('"+AmountPaid+"')";
+                 
+                 st7=obj.con.createStatement();
+                              
+                int m=st7.executeUpdate(query3);
+                
+    JOptionPain.showMessageDialog(null,"Data Entered successfuly");
+
+ 
+  
+}
+             catch(Exception e){
+            
+ e.getStackTrace();}
+       
     // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
